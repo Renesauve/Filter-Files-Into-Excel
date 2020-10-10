@@ -10,7 +10,7 @@ const jsonexport = require("jsonexport");
 // const DxfParser = require("dxf-parser");
 // const pcheerio = require('pseudo-cheerio');
 
-const currentPath = "C:/Users/Student2/OneDrive - Electron Metalworks Ltd/Desktop/svgs/SVGS";
+const currentPath = "C:/Users/Student2/OneDrive - Electron Metalworks Ltd/Desktop/svgs/FixThese";
 
 
 
@@ -47,7 +47,7 @@ fs.readdir(currentPath, {encoding: "utf8", withFileTypes: true}, function (
               height: svg.attr("height"),
             }
             
-             resolve(([fileData].filter(item => item.width != "210mm")))
+             resolve(([fileData].filter(item => item.width === "210mm")))
             
 
           });
@@ -60,29 +60,6 @@ fs.readdir(currentPath, {encoding: "utf8", withFileTypes: true}, function (
     })
     
   ).then((content) => {
-
-for ( i=0; i<content.length; i++ )
-
-          {
-        for ( j=0; j<content[i].length; j++ )
-      
-        {
-          const oldPath = (currentPath + "/" + content[i][j].filename)
-          const newPath = ("C:/Users/Student2/OneDrive - Electron Metalworks Ltd/Desktop/svgs/NeedsFixedSvgs" + "/" + content[i][j].filename)
-        
-
-          fs.rename(oldPath, newPath, function (err) {
-            if (err) throw err
-            console.log('Successfully renamed - AKA moved!')
-          })
-
-        }
-      }
-    
-    
-
-
-
       jsonexport(content, function (err, csv) {
         if (err) return console.error(err);
         const writer = fs.createWriteStream("filtered-pictures.csv");
