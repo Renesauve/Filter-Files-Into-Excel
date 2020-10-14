@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.2.0",
     "dxf-to-svg": "^2.4.5",
     "excel-export": "^0.5.1",
     "glob": "^7.1.6",
